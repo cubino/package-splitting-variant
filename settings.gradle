@@ -1,0 +1,5 @@
+rootProject.name = "DDD-example"
+include "domain"
+include 'domain-client'
+include 'consumer'
+

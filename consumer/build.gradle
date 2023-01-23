@@ -1,0 +1,41 @@
+buildscript {
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${project.properties.kotlinVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:${project.properties.kotlinVersion}"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${project.properties.springBootVersion}"
+    }
+}
+
+apply plugin: 'idea'
+apply plugin: 'kotlin'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+jar {
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}
+
+dependencies {
+    implementation project(':domain-client')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${project.properties.kotlinVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:${project.properties.kotlinVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.properties.kotlinVersion}"
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "11"
+        apiVersion = kotlinMajorVersion // needed for IDEA
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "11"
+        apiVersion = kotlinMajorVersion // needed for IDEA
+    }
+}
