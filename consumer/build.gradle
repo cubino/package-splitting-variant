@@ -20,7 +20,7 @@ bootJar {
 }
 
 dependencies {
-    implementation project(':domain-client')
+    implementation project(':domain-api')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${project.properties.kotlinVersion}"
     implementation "org.jetbrains.kotlin:kotlin-reflect:${project.properties.kotlinVersion}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.properties.kotlinVersion}"

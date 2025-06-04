@@ -1,5 +1,7 @@
 rootProject.name = "DDD-example"
-include "domain"
-include 'domain-client'
+include 'domain'
+include 'domain-api'
 include 'consumer'
+include 'another-service-api'
+include 'user-service-api'
 

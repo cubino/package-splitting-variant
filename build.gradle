@@ -13,7 +13,3 @@ allprojects {
 }
 
 evaluationDependsOnChildren()
-
-task build {
-    dependsOn subprojects*.build
-}

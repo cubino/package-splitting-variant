@@ -1,9 +1,9 @@
 package ru.consumer.dataprovider
 
 import ru.domen.api.ApiClient
-import ru.domen.api.ShortEntity
+import ru.domen.api.ShortEntityResponse
 
-internal typealias InternalEntity = ShortEntity
+internal typealias InternalEntity = ShortEntityResponse
 
 internal class EntityDataProvider(
     private val entityApiClient: ApiClient

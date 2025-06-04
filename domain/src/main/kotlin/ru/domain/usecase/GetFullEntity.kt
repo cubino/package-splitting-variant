@@ -1,23 +1,32 @@
 package ru.domain.usecase
 
-import ru.domain.InternalModel
+import ru.domain.InternalEntityModel
 import ru.domain.dataprovider.EntityDataProvider
-import ru.domen.api.FullEntity
-import javax.persistence.EntityNotFoundException
+import ru.domain.dataprovider.UserServiceDataProvider
+import ru.domen.api.EntityNotFoundException
+import ru.domen.api.FullEntityResponse
+import ru.domen.api.OwnerResponse
 
 internal class GetFullEntity(
-    private val entityDataProvider: EntityDataProvider
+    private val entityDataProvider: EntityDataProvider,
+    private val userServiceDataProvider: UserServiceDataProvider
 ) {
 
-    operator fun invoke(id: String): FullEntity {
-        return entityDataProvider.getEntity(id)?.toOutputModel() ?: throw EntityNotFoundException(id)
+    operator fun invoke(id: String): FullEntityResponse {
+        return entityDataProvider.findById(id)?.toOutputModel() ?: throw EntityNotFoundException(id)
     }
 
-    private fun InternalModel.toOutputModel(): FullEntity {
-        return FullEntity(
+    private fun InternalEntityModel.toOutputModel(): FullEntityResponse {
+        return FullEntityResponse(
             id = id,
             field = field,
-            version = version
+            version = version,
+            owner = userServiceDataProvider.findUserById(createdByUserId)?.let {
+                OwnerResponse(
+                    id = it.id,
+                    name = it.name
+                )
+            }
         )
     }
 

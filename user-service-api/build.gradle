@@ -14,17 +14,12 @@ apply plugin: 'io.spring.dependency-management'
 jar {
     enabled = true
 }
+
 bootJar {
     enabled = false
 }
 
 dependencies {
-    implementation project(':domain-api')
-    implementation project(':another-service-api')
-    implementation project(':user-service-api')
-    implementation 'org.springframework.data:spring-data-jpa'
-    implementation 'javax.persistence:javax.persistence-api'
-    implementation 'org.springframework:spring-web'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${project.properties.kotlinVersion}"
     implementation "org.jetbrains.kotlin:kotlin-reflect:${project.properties.kotlinVersion}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.properties.kotlinVersion}"

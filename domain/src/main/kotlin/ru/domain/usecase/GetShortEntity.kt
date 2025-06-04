@@ -1,22 +1,22 @@
 package ru.domain.usecase
 
-import ru.domain.InternalModel
+import ru.domain.InternalEntityModel
 import ru.domain.dataprovider.EntityDataProvider
-import ru.domen.api.ShortEntity
-import javax.persistence.EntityNotFoundException
+import ru.domen.api.ShortEntityResponse
+import ru.domen.api.EntityNotFoundException
 
 internal class GetShortEntity(
     private val entityDataProvider: EntityDataProvider
 ) {
 
-    operator fun invoke(id: String): ShortEntity {
-        return entityDataProvider.getEntity(id)?.toOutputModel() ?: throw EntityNotFoundException(id)
+    operator fun invoke(id: String): ShortEntityResponse {
+        return entityDataProvider.findById(id)?.toOutputModel() ?: throw EntityNotFoundException(id)
     }
 
-    private fun InternalModel.toOutputModel(): ShortEntity {
-        return ShortEntity(
+    private fun InternalEntityModel.toOutputModel(): ShortEntityResponse {
+        return ShortEntityResponse(
             id = id,
-            field = field,
+            field = field
         )
     }
 
